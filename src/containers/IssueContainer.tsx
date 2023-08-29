@@ -5,6 +5,7 @@ import {issueListSelector} from '../recoil/issueState';
 import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import {Link} from 'react-router-dom';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
@@ -34,11 +35,12 @@ const IssueContainer = () => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) {
                                 const adItem = (
-                                    <S.AdImage
-                                        key={index}
-                                        src='/assets/img/ad_image.png'
-                                        alt='ad-image'
-                                    ></S.AdImage>
+                                    <Link to='https://www.wanted.co.kr/' key={index}>
+                                        <S.AdImage
+                                            src='/assets/img/ad_image.png'
+                                            alt='ad-image'
+                                        ></S.AdImage>
+                                    </Link>
                                 );
                                 return [item, adItem];
                             }
