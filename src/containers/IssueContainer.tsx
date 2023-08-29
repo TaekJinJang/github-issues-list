@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import * as S from '../styles/Issue.styled';
 import {useRecoilValueLoadable} from 'recoil';
 import {issueListSelector} from '../recoil/issueState';
@@ -6,15 +7,20 @@ import {issueType} from '../types/IssueTypes';
 
 const IssueContainer = () => {
     const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector);
-    console.info(issueListLoadable);
+    const [issues, setIssues] = useState<issueType[]>([]);
+
+    useEffect(() => {
+        if (issueListLoadable.state === 'hasValue') {
+            setIssues(issues => [...issues, ...issueListLoadable.contents]);
+        }
+    }, [issueListLoadable.contents]);
 
     switch (issueListLoadable.state) {
         case 'hasValue':
             return (
                 <>
                     <S.IssueContainer>
-                        {issueListLoadable.contents.map((issue, index) => {
-                            console.info(index);
+                        {issues.map((issue, index) => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) {
                                 const adItem = (
