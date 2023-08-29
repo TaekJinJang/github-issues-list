@@ -1,7 +1,8 @@
-import {Octokit} from 'octokit';
+import * as API from '../apis/IssueAPI';
 
 const IssueList = () => {
-    const octokit = new Octokit({auth: `personal-access-token123`});
+    console.info(API.IssueAPI());
+    console.info(API.IssueDetailAPI(27271));
     return <div>홈</div>;
 };
 
