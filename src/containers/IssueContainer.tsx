@@ -6,7 +6,7 @@ import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
 
 const IssueContainer = () => {
-    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector);
+    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector(1));
     const [issues, setIssues] = useState<issueType[]>([]);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import {atom, selector} from 'recoil';
+import {atom, selector, selectorFamily} from 'recoil';
 import * as API from '../apis/IssueAPI';
 import {issueType} from '../types/IssueTypes';
 
@@ -14,11 +14,11 @@ export const issueDetailAtom = atom({
 });
 
 // Selector 정의
-export const issueListSelector = selector({
+export const issueListSelector = selectorFamily({
     key: 'issueListSelector',
-    get: async () => {
+    get: (page: number) => async () => {
         try {
-            const issuesData = await API.getIssueAPI();
+            const issuesData = await API.getIssueAPI(page);
             return issuesData.map((issue: issueType) => ({
                 number: issue.number,
                 title: issue.title,
