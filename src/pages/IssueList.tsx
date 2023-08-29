@@ -1,12 +1,10 @@
-import * as API from '../apis/IssueAPI';
-import IssueItem from '../components/IssueItem';
+import IssueContainer from '../containers/IssueContainer';
 
 const IssueList = () => {
-    console.info(API.getIssueAPI());
-    console.info(API.getIssueDetailAPI(27271));
+    // console.info(API.getIssueDetailAPI(27271));
     return (
         <div>
-            <IssueItem />
+            <IssueContainer />
         </div>
     );
 };
