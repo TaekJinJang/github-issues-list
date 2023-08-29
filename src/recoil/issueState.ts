@@ -1,5 +1,6 @@
 import {atom, selector} from 'recoil';
 import * as API from '../apis/IssueAPI';
+import {issueType} from '../types/IssueTypes';
 
 // Atom 정의
 export const issueListAtom = atom({
@@ -18,7 +19,13 @@ export const issueListSelector = selector({
     get: async () => {
         try {
             const issuesData = await API.getIssueAPI();
-            return issuesData;
+            return issuesData.map((issue: issueType) => ({
+                number: issue.number,
+                title: issue.title,
+                user: issue.user,
+                created_at: issue.created_at,
+                comments: issue.comments,
+            }));
         } catch (error) {
             console.error(error);
             throw error;

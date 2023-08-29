@@ -1,13 +1,29 @@
 import * as S from '../styles/Issue.styled';
-import {useRecoilValue, useRecoilValueLoadable} from 'recoil';
+import {useRecoilValueLoadable} from 'recoil';
 import {issueListSelector} from '../recoil/issueState';
+import IssueItem from '../components/IssueItem';
+import {issueType} from '../types/IssueTypes';
 
 const IssueContainer = () => {
-    const test = useRecoilValue(issueListSelector);
-    const issueListLoadable = useRecoilValueLoadable(issueListSelector);
+    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector);
     console.info(issueListLoadable);
-    console.info(test);
-    return <S.IssueContainer>sss</S.IssueContainer>;
+
+    switch (issueListLoadable.state) {
+        case 'hasValue':
+            return (
+                <>
+                    <S.IssueContainer>
+                        {issueListLoadable.contents.map(issue => (
+                            <IssueItem key={issue.number} issue={issue} />
+                        ))}
+                    </S.IssueContainer>
+                </>
+            );
+        case 'loading':
+            return <div>s</div>;
+        case 'hasError':
+            return <div> error</div>;
+    }
 };
 
 export default IssueContainer;
