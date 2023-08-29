@@ -1,6 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom';
 import App from './App';
-import Home from './pages/Home';
+import IssueList from './pages/IssueList';
 // import ROUTES from './constants/routes';
 
 export const Router = createBrowserRouter([
@@ -10,7 +10,7 @@ export const Router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />,
+                element: <IssueList />,
             },
         ],
     },
