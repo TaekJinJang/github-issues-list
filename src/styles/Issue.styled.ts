@@ -21,3 +21,8 @@ export const IssueContents = styled.span`
 export const IssueComment = styled.span`
     width: 50px;
 `;
+
+export const AdImage = styled.img`
+    width: 500px;
+    height: 80px;
+`;

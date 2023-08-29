@@ -13,9 +13,20 @@ const IssueContainer = () => {
             return (
                 <>
                     <S.IssueContainer>
-                        {issueListLoadable.contents.map(issue => (
-                            <IssueItem key={issue.number} issue={issue} />
-                        ))}
+                        {issueListLoadable.contents.map((issue, index) => {
+                            console.info(index);
+                            const item = <IssueItem key={issue.number} issue={issue} />;
+                            if ((index + 1) % 5 === 0) {
+                                const adItem = (
+                                    <S.AdImage
+                                        src='/assets/img/ad_image.png'
+                                        alt='ad-image'
+                                    ></S.AdImage>
+                                );
+                                return [item, adItem];
+                            }
+                            return item;
+                        })}
                     </S.IssueContainer>
                 </>
             );
