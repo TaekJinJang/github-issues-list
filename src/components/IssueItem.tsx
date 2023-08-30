@@ -7,18 +7,20 @@ const IssueItem = ({issue}: {issue: issueType}) => {
     const onMoveDetail = () => {
         navigate(`/detail/${issue.number}`);
     };
-    return (
-        <li>
-            <S.IssueListStyled onClick={onMoveDetail}>
-                <S.IssueContents>
-                    <h2>{issue.number}</h2>
-                    <span>{issue.user.login}</span>
-                    <span>{issue.created_at}</span>
-                </S.IssueContents>
 
-                <S.IssueComment>{issue.comments}</S.IssueComment>
-            </S.IssueListStyled>
-        </li>
+    return (
+        <S.IssueListStyled onClick={onMoveDetail}>
+            <div>
+                <span className='title'>
+                    #{issue.number} {issue.title}
+                </span>
+                <span className='bottom'>
+                    <span>작성자 : {issue.user.login}</span>
+                    <span>작성일 : {new Date(issue.created_at).toLocaleDateString()}</span>
+                </span>
+            </div>
+            <span className='comment'>코멘트 : {issue.comments}</span>
+        </S.IssueListStyled>
     );
 };
 

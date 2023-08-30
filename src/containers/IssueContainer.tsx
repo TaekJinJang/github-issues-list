@@ -30,8 +30,8 @@ const IssueContainer = () => {
     switch (issueListLoadable.state) {
         case 'hasValue':
             return (
-                <>
-                    <S.IssueContainer ref={target}>
+                <div ref={target}>
+                    <S.IssueContainer>
                         {issues.map((issue, index) => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) {
@@ -52,7 +52,7 @@ const IssueContainer = () => {
                             return item;
                         })}
                     </S.IssueContainer>
-                </>
+                </div>
             );
         case 'loading':
             return (
