@@ -38,8 +38,3 @@ export const IssueListStyled = styled.li`
         align-items: center;
     }
 `;
-
-export const AdImage = styled.img`
-    width: 500px;
-    height: 80px;
-`;

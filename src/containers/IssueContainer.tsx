@@ -5,7 +5,7 @@ import {issueListSelector} from '../recoil/issueState';
 import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import {Link} from 'react-router-dom';
+import AdImage from '../components/Ad';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
@@ -34,46 +34,15 @@ const IssueContainer = () => {
                     <S.IssueContainer>
                         {issues.map((issue, index) => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
-                            if ((index + 1) % 5 === 0) {
-                                const adItem = (
-                                    <Link
-                                        to='https://www.wanted.co.kr/'
-                                        target='_blank'
-                                        key={index}
-                                    >
-                                        <S.AdImage
-                                            src='/assets/img/ad_image.png'
-                                            alt='ad-image'
-                                        ></S.AdImage>
-                                    </Link>
-                                );
-                                return [item, adItem];
-                            }
+                            if ((index + 1) % 5 === 0) return [item, <AdImage />];
+
                             return item;
                         })}
                     </S.IssueContainer>
                 </div>
             );
         case 'loading':
-            return (
-                <>
-                    <S.IssueContainer>
-                        {issues.map((issue, index) => {
-                            const item = <IssueItem key={issue.number} issue={issue} />;
-                            if ((index + 1) % 5 === 0) {
-                                const adItem = (
-                                    <S.AdImage
-                                        src='/assets/img/ad_image.png'
-                                        alt='ad-image'
-                                    ></S.AdImage>
-                                );
-                                return [item, adItem];
-                            }
-                            return item;
-                        })}
-                    </S.IssueContainer>
-                </>
-            );
+            return <div>로딩중 ...</div>;
         case 'hasError':
             return <div> error</div>;
     }
