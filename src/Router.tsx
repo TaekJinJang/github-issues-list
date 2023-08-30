@@ -1,9 +1,8 @@
-import {createBrowserRouter} from 'react-router-dom';
+import {Navigate, createBrowserRouter} from 'react-router-dom';
 import App from './App';
 import IssueList from './pages/IssueList';
 import ROUTES from './constants/routes';
 import IssueDetail from './pages/IssueDetail';
-// import ROUTES from './constants/routes';
 
 export const Router = createBrowserRouter([
     {
@@ -11,11 +10,15 @@ export const Router = createBrowserRouter([
         element: <App />,
         children: [
             {
+                path: ROUTES.HOME,
+                element: <Navigate to='/issues' replace={true} />,
+            },
+            {
                 path: ROUTES.ISSUES,
                 element: <IssueList />,
             },
             {
-                path: `${ROUTES.ISSUE_DETAIL}/:issueId`,
+                path: `${ROUTES.ISSUES}/:issueId`,
                 element: <IssueDetail />,
             },
         ],
