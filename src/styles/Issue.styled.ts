@@ -46,4 +46,7 @@ export const IssueDetailHeader = styled.div`
     margin: 10px auto;
     display: flex;
     align-items: center;
+    img {
+        border-radius: 50px;
+    }
 `;

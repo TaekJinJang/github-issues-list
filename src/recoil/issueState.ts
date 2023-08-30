@@ -1,4 +1,4 @@
-import {atom, selector} from 'recoil';
+import {atom, selector, selectorFamily} from 'recoil';
 import * as API from '../apis/IssueAPI';
 import {issueType} from '../types/IssueTypes';
 
@@ -49,17 +49,15 @@ export const issueListSelector = selector({
     // },
 });
 
-export const issueDetailSelector = selector({
+export const issueDetailSelector = selectorFamily({
     key: 'issueDetailSelector',
-    get:
-        ({get}) =>
-        async (id: number) => {
-            try {
-                const issueData = await API.getIssueDetailAPI(id);
-                return issueData;
-            } catch (error) {
-                console.error(error);
-                throw error;
-            }
-        },
+    get: (id: number) => async () => {
+        try {
+            const issueData = await API.getIssueDetailAPI(id);
+            return issueData;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    },
 });
