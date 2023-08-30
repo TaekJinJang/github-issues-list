@@ -8,11 +8,6 @@ export const issueListAtom = atom({
     default: [], // 기본값 설정 (이슈 목록은 빈 배열)
 });
 
-export const issueDetailAtom = atom({
-    key: 'issueDetailAtom',
-    default: null, // 기본값 설정 (개별 이슈 정보는 null)
-});
-
 // Selector 정의
 export const issueListSelector = selectorFamily({
     key: 'issueListSelector',

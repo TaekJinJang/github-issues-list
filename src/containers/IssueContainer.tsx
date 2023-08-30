@@ -23,8 +23,9 @@ const IssueContainer = () => {
         if (issueListLoadable.state === 'hasValue') {
             setIssues(issues => [...issues, ...issueListLoadable.contents]);
         }
-    }, [issueListLoadable.contents]);
+    }, [count, issueListLoadable.contents]);
     console.info(issues);
+    console.info(count);
 
     switch (issueListLoadable.state) {
         case 'hasValue':
@@ -35,7 +36,11 @@ const IssueContainer = () => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) {
                                 const adItem = (
-                                    <Link to='https://www.wanted.co.kr/' key={index}>
+                                    <Link
+                                        to='https://www.wanted.co.kr/'
+                                        target='_blank'
+                                        key={index}
+                                    >
                                         <S.AdImage
                                             src='/assets/img/ad_image.png'
                                             alt='ad-image'
@@ -52,7 +57,7 @@ const IssueContainer = () => {
         case 'loading':
             return (
                 <>
-                    <S.IssueContainer ref={target}>
+                    <S.IssueContainer>
                         {issues.map((issue, index) => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) {
