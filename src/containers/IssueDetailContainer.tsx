@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react';
 import {getIssueDetailAPI} from '../apis/IssueAPI';
 import {issueDetailType} from '../types/IssueTypes';
 import IssueItem from '../components/IssueItem';
+import MarkdownBody from '../components/MarkdownBody';
 
 const IssueDetailContainer = () => {
     const location = useLocation();
@@ -15,19 +16,21 @@ const IssueDetailContainer = () => {
     console.info(data, error, loading, '이슈ㅜ데이터');
 
     return (
-        <S.IssueDetailHeader>
-            <img src={data?.user.avatar_url} alt={data?.user.login} width={80} />
-            <IssueItem
-                issue={{
-                    number: data.number,
-                    title: data.title,
-                    user: {login: data.user.login},
-                    created_at: data.created_at,
-                    comments: data.comments,
-                }}
-            />
-            <div>{data.body}</div>
-        </S.IssueDetailHeader>
+        <>
+            <S.IssueDetailHeader>
+                <img src={data?.user.avatar_url} alt={data?.user.login} width={80} />
+                <IssueItem
+                    issue={{
+                        number: data.number,
+                        title: data.title,
+                        user: {login: data.user.login},
+                        created_at: data.created_at,
+                        comments: data.comments,
+                    }}
+                />
+            </S.IssueDetailHeader>
+            <MarkdownBody body={data.body}></MarkdownBody>
+        </>
     );
 };
 
