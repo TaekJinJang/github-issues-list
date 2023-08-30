@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 const IssueItem = ({issue}: {issue: issueType}) => {
     const navigate = useNavigate();
     const onMoveDetail = () => {
-        navigate(`/detail/${issue.number}`);
+        navigate(`/issues/${issue.number}`);
     };
 
     return (

@@ -23,9 +23,9 @@ const IssueContainer = () => {
         if (issueListLoadable.state === 'hasValue') {
             setIssues(issues => [...issues, ...issueListLoadable.contents]);
         }
-    }, [count, issueListLoadable.contents]);
-    console.info(issues);
+    }, [issueListLoadable.contents]);
     console.info(count);
+    console.info(issues);
 
     switch (issueListLoadable.state) {
         case 'hasValue':
@@ -42,7 +42,7 @@ const IssueContainer = () => {
                 </div>
             );
         case 'loading':
-            return <div>로딩중 ...</div>;
+            return <div>로딩중</div>;
         case 'hasError':
             return <div> error</div>;
     }

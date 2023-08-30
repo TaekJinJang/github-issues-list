@@ -38,3 +38,12 @@ export const IssueListStyled = styled.li`
         align-items: center;
     }
 `;
+
+export const IssueDetailHeader = styled.div`
+    max-width: 800px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+`;
