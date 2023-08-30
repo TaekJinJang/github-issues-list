@@ -1,7 +1,7 @@
-import {useState, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import * as S from '../styles/Issue.styled';
-import {useRecoilValueLoadable} from 'recoil';
-import {issueListSelector} from '../recoil/issueState';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {issueListAtom, issueListSelector, issuePageAtom} from '../recoil/issueState';
 import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
@@ -9,7 +9,9 @@ import AdImage from '../components/Ad';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
-    const [issues, setIssues] = useState<issueType[]>([]);
+    const setPage = useSetRecoilState(issuePageAtom);
+    const [issues, setIssues] = useRecoilState<issueType[]>(issueListAtom);
+    const issueListLoadable = useRecoilValue<issueType[]>(issueListSelector);
 
     const {count} = useInfiniteScroll({
         target: target,
@@ -17,35 +19,34 @@ const IssueContainer = () => {
         threshold: 0.2,
         endPoint: 3,
     });
-    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector(count));
 
     useEffect(() => {
-        if (issueListLoadable.state === 'hasValue') {
-            setIssues(issues => [...issues, ...issueListLoadable.contents]);
-        }
-    }, [issueListLoadable.contents]);
-    console.info(count);
-    console.info(issues);
+        setPage(count);
+    }, [count]);
 
-    switch (issueListLoadable.state) {
-        case 'hasValue':
-            return (
-                <div ref={target}>
-                    <S.IssueContainer>
-                        {issues.map((issue, index) => {
+    console.info(issues, '이슈테스트');
+    console.info(setIssues, '셋이슈ㅜ스');
+
+    // useEffect(() => {
+    //     setIssues(issues => [...issues, ...issueListLoadable]);
+    // }, [issueListLoadable]);
+    console.info(issueListLoadable);
+    // state가 error라면 error 페이지로 리다이렉트
+    return (
+        <div>
+            <S.IssueContainer>
+                <section ref={target}>
+                    {issues &&
+                        issues.map((issue, index) => {
                             const item = <IssueItem key={issue.number} issue={issue} />;
                             if ((index + 1) % 5 === 0) return [item, <AdImage />];
 
                             return item;
                         })}
-                    </S.IssueContainer>
-                </div>
-            );
-        case 'loading':
-            return <div>로딩중</div>;
-        case 'hasError':
-            return <div> error</div>;
-    }
+                </section>
+            </S.IssueContainer>
+        </div>
+    );
 };
 
 export default IssueContainer;
