@@ -1,6 +1,6 @@
 import {useEffect, useRef} from 'react';
 import * as S from '../styles/Issue.styled';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValueLoadable} from 'recoil';
 import {issueListAtom, issueListSelector, issuePageAtom} from '../recoil/issueState';
 import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
@@ -9,9 +9,9 @@ import AdImage from '../components/Ad';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
-    const setPage = useSetRecoilState(issuePageAtom);
+    const [page, setPage] = useRecoilState(issuePageAtom);
     const [issues, setIssues] = useRecoilState<issueType[]>(issueListAtom);
-    const issueListLoadable = useRecoilValue<issueType[]>(issueListSelector);
+    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector);
 
     const {count} = useInfiniteScroll({
         target: target,
@@ -19,18 +19,20 @@ const IssueContainer = () => {
         threshold: 0.2,
         endPoint: 3,
     });
-
+    console.info(page);
     useEffect(() => {
         setPage(count);
     }, [count]);
 
-    console.info(issues, '이슈테스트');
-    console.info(setIssues, '셋이슈ㅜ스');
+    useEffect(() => {
+        if (issueListLoadable.state === 'hasValue') {
+            if (issues.length > 1 && page !== 1) {
+                setIssues(issues => [...issues, ...issueListLoadable.contents]);
+                console.info('useEffec실행', issueListLoadable.contents);
+            } else setIssues(issueListLoadable.contents);
+        }
+    }, [issueListLoadable.contents]);
 
-    // useEffect(() => {
-    //     setIssues(issues => [...issues, ...issueListLoadable]);
-    // }, [issueListLoadable]);
-    console.info(issueListLoadable);
     // state가 error라면 error 페이지로 리다이렉트
     return (
         <div>

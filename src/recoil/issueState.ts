@@ -19,65 +19,35 @@ export const issueDetailAtom = atom({
 });
 
 // Selector 정의
+
 export const issueListSelector = selector({
     key: 'issueListSelector',
     get: async ({get}) => {
         const page = get(issuePageAtom);
-        let issuesData;
         try {
-            issuesData = await API.getIssueAPI(page);
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-
-        return issuesData.map((issue: issueType) => ({
-            number: issue.number,
-            title: issue.title,
-            user: issue.user,
-            created_at: issue.created_at,
-            comments: issue.comments,
-        }));
-    },
-    set: ({set}, newIssueList) => {
-        try {
-            set(issueListAtom, newIssueList);
-            console.info('dkxha');
+            const issuesData = await API.getIssueAPI(page);
+            return issuesData.map((issue: issueType) => ({
+                number: issue.number,
+                title: issue.title,
+                user: issue.user,
+                created_at: issue.created_at,
+                comments: issue.comments,
+            }));
         } catch (error) {
             console.error(error);
             throw error;
         }
     },
+    // set: ({set}, newIssueList) => {
+    //     try {
+    //         set(issueListAtom, newIssueList);
+    //         console.info('dkxha');
+    //     } catch (error) {
+    //         console.error(error);
+    //         throw error;
+    //     }
+    // },
 });
-
-// export const issueListSelector = selector({
-//     key: 'issueListSelector',
-//     get: async ({get}) => {
-//         const page = get(issuePageAtom);
-//         try {
-//             const issuesData = await API.getIssueAPI(page);
-//             return issuesData.map((issue: issueType) => ({
-//                 number: issue.number,
-//                 title: issue.title,
-//                 user: issue.user,
-//                 created_at: issue.created_at,
-//                 comments: issue.comments,
-//             }));
-//         } catch (error) {
-//             console.error(error);
-//             throw error;
-//         }
-//     },
-//     set: ({set}, newIssueList) => {
-//         try {
-//             set(issueListAtom, newIssueList);
-//             console.info('dkxha');
-//         } catch (error) {
-//             console.error(error);
-//             throw error;
-//         }
-//     },
-// });
 
 export const issueDetailSelector = selector({
     key: 'issueDetailSelector',
