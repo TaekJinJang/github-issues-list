@@ -4,12 +4,10 @@ import styled from 'styled-components';
 export const Header = styled.header`
     height: 70px;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
+    background-color: #e2e2e2;
     border-bottom: 3px solid #000;
 `;
 export const HeaderLink = styled(Link)`
@@ -18,7 +16,4 @@ export const HeaderLink = styled(Link)`
     cursor: pointer;
     font-weight: bold;
     font-size: 24px;
-    margin: 0 0 0 20px;
-    padding: 10px;
-    border-radius: 10px;
 `;
