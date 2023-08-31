@@ -1,6 +1,6 @@
 import * as S from '../styles/Issue.styled';
 
-import {useLocation} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getIssueDetailAPI} from '../apis/IssueAPI';
 import {issueDetailType} from '../types/IssueTypes';
@@ -8,10 +8,10 @@ import IssueItem from '../components/IssueItem';
 import MarkdownBody from '../components/MarkdownBody';
 
 const IssueDetailContainer = () => {
-    const location = useLocation();
-    const id = location.state.id;
-    // const [issue,setIssue] = useState<issueDetailType>();
-    const {data, error, loading} = useIssueDetail(id);
+    const params = useParams();
+    const id = params.id;
+
+    const {data, error, loading} = useIssueDetail(Number(id));
 
     console.info(data, error, loading, '이슈ㅜ데이터');
 
