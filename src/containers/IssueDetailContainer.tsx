@@ -6,6 +6,7 @@ import {getIssueDetailAPI} from '../apis/IssueAPI';
 import {issueDetailType} from '../types/IssueTypes';
 import IssueItem from '../components/IssueItem';
 import MarkdownBody from '../components/MarkdownBody';
+import Skeleton from 'react-loading-skeleton';
 
 const IssueDetailContainer = () => {
     const params = useParams();
@@ -18,7 +19,7 @@ const IssueDetailContainer = () => {
     return (
         <>
             <S.IssueDetailHeader>
-                <img src={data?.user.avatar_url} alt={data?.user.login} width={80} />
+                <img src={data.user.avatar_url} alt={data.user.login} width={80} />
                 <IssueItem
                     issue={{
                         number: data.number,
@@ -30,7 +31,11 @@ const IssueDetailContainer = () => {
                 />
             </S.IssueDetailHeader>
             <S.IssueDetailBody>
-                <MarkdownBody body={data.body}></MarkdownBody>
+                {loading ? (
+                    <Skeleton height={300} />
+                ) : (
+                    <MarkdownBody body={data.body}></MarkdownBody>
+                )}
             </S.IssueDetailBody>
         </>
     );
