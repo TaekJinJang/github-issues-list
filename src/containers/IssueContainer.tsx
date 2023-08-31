@@ -6,6 +6,7 @@ import IssueItem from '../components/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import AdImage from '../components/Ad';
+import IssueItemSkeleton from '../components/IssueItemSkeleton';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
@@ -34,19 +35,24 @@ const IssueContainer = () => {
     }, [issueListLoadable.contents]);
 
     // state가 error라면 error 페이지로 리다이렉트
+
     return (
         <div>
-            <S.IssueContainer>
-                <section ref={target}>
-                    {issues &&
-                        issues.map((issue, index) => {
-                            const item = <IssueItem key={issue.number} issue={issue} />;
-                            if ((index + 1) % 5 === 0) return [item, <AdImage />];
+            {issues.length === 0 ? (
+                Array.from({length: 10}).map((_, index) => <IssueItemSkeleton key={index} />)
+            ) : (
+                <S.IssueContainer>
+                    <section ref={target}>
+                        {issues &&
+                            issues.map((issue, index) => {
+                                const item = <IssueItem key={issue.number} issue={issue} />;
+                                if ((index + 1) % 5 === 0) return [item, <AdImage />];
 
-                            return item;
-                        })}
-                </section>
-            </S.IssueContainer>
+                                return item;
+                            })}
+                    </section>
+                </S.IssueContainer>
+            )}
         </div>
     );
 };
