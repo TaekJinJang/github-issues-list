@@ -29,7 +29,9 @@ const IssueDetailContainer = () => {
                     }}
                 />
             </S.IssueDetailHeader>
-            <MarkdownBody body={data.body}></MarkdownBody>
+            <S.IssueDetailBody>
+                <MarkdownBody body={data.body}></MarkdownBody>
+            </S.IssueDetailBody>
         </>
     );
 };

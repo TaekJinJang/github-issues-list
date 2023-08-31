@@ -50,3 +50,18 @@ export const IssueDetailHeader = styled.div`
         border-radius: 50px;
     }
 `;
+
+export const IssueDetailBody = styled.article`
+    max-width: 800px;
+    padding: 10px 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #e3e3e3;
+    text-align: left;
+    img {
+        max-width: 700px;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+`;
