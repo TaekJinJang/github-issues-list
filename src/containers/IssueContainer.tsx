@@ -50,9 +50,11 @@ const IssueContainer = () => {
 
                                 return item;
                             })}
+                        {issueListLoadable.state === 'loading' && <div> 로딩중입니다 .....</div>}
                     </section>
                 </S.IssueContainer>
             )}
+            {issueListLoadable.state === 'hasError' && <div>에러페이지 이동 </div>}
         </div>
     );
 };

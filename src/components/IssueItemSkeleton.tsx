@@ -9,11 +9,11 @@ const IssueItemSkeleton = () => {
                 <Skeleton className='title' />
 
                 <div className='bottom'>
-                    <Skeleton></Skeleton>
-                    <Skeleton></Skeleton>
+                    <Skeleton />
+                    <Skeleton />
                 </div>
             </div>
-            <Skeleton></Skeleton>
+            <Skeleton />
         </S.IssueListStyled>
     );
 };
