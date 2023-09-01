@@ -47,7 +47,7 @@ const IssueContainer = () => {
                         {issues &&
                             issues.map((issue, index) => {
                                 const item = <IssueItem key={issue.number} issue={issue} />;
-                                if ((index + 1) % 5 === 0) return [item, <AdImage />];
+                                if ((index + 1) % 5 === 0) return [item, <AdImage key={index} />];
 
                                 return item;
                             })}
