@@ -20,6 +20,7 @@
 | :-------------------------: | 
 |  ![issueList](https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/a2c5d591-f0e9-4b50-9005-3617936f65cf) |
 
+
 ### 📁 디렉토리 구조
 ```
 📦src
@@ -84,4 +85,16 @@
 | 스켈레톤-issueList |       스켈레톤-issueDetail      |
 | :---------------------------------: | :-----------------------------------: |
 | <img width="400" alt="issueList" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/1084dfdf-5e44-430b-b52b-e4b529cf0091"/> | <img width="400" alt="issueDetail" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/33c8fdbe-45f8-41e1-92dd-8ff00731dea4"/> |
+
+## 기술 스택
+
+### Development
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+
+### Library
+
+<img src="https://img.shields.io/badge/styled%20components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/Axios-DA291C?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/Recoil-3578E5?style=for-the-badge&logo=Recoil&logoColor=white">
+<img src="https://img.shields.io/badge/React%20markdown-000000?style=for-the-badge&logo=Markdown&logoColor=white"> <img src="https://img.shields.io/badge/React Router Dom-3178C6?style=for-the-badge&logo=&logoColor=white">
 
