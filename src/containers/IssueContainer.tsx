@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import * as S from '../styles/Issue.styled';
 import {useRecoilState, useRecoilValueLoadable} from 'recoil';
 import {issueListAtom, issueListSelector, issuePageAtom} from '../recoil/issueState';
-import IssueItem from '../components/IssueItem';
+import IssueItem from '../components/common/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import AdImage from '../components/Ad';
@@ -42,6 +42,7 @@ const IssueContainer = () => {
                 Array.from({length: 10}).map((_, index) => <IssueItemSkeleton key={index} />)
             ) : (
                 <S.IssueContainer>
+                    <S.IssuePageTitle>Issues</S.IssuePageTitle>
                     <section ref={target}>
                         {issues &&
                             issues.map((issue, index) => {

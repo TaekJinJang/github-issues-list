@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getIssueDetailAPI} from '../apis/IssueAPI';
 import {issueDetailType} from '../types/IssueTypes';
-import IssueItem from '../components/IssueItem';
+import IssueItem from '../components/common/IssueItem';
 import MarkdownBody from '../components/MarkdownBody';
 import Skeleton from 'react-loading-skeleton';
 
