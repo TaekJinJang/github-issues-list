@@ -5,7 +5,7 @@
 ## 🙂 시작 가이드
 * 배포 주소
 
-  🔗 http://wanted-pre-onboarding-12th-2-11.s3-website.ap-northeast-2.amazonaws.com/issues
+  🔗 http://wanted-pre-onboarding-2week-personal.s3-website.ap-northeast-2.amazonaws.com
 
 * 프로젝트 실행 방법
   ```
@@ -15,9 +15,10 @@
 ## 🎥 화면 구성
 
 
-|            /issues     |   
+
+|   화면 구성     |   
 | :-------------------------: | 
-| ![issueList](https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/737f863e-3c42-46ad-809a-7f5c0530acae)|
+|  ![issueList](https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/a2c5d591-f0e9-4b50-9005-3617936f65cf) |
 
 ### 📁 디렉토리 구조
 ```
@@ -45,11 +46,42 @@
 
 ### `이슈 상세`
 > - 이슈와 함께 작성자의 프로필 이미지, 본문 정보를 제공합니다.
-> - 본문에서는 마크다운 문법을 제공합니다.
+> - 본문에서는 마크다운 문법을 제공합니다. (react-markdown)
+
+### `데이터 상태관리`
+``` js
+// state가 error라면 error 페이지로 리다이렉트
+    if (issueListLoadable.state === 'hasError') return <NotFound />;
+    return (
+        <div>
+            {issues.length === 0 ? (
+                Array.from({length: 10}).map((_, index) => <IssueItemSkeleton key={index} />)
+            ) : (
+                <S.IssueContainer>
+                    <section ref={target}>
+                        {issues &&
+                            issues.map((issue, index) => {
+                                const item = <IssueItem key={issue.number} issue={issue} />;
+                                if ((index + 1) % 4 === 0) return [item, <AdImage key={index} />];
+
+                                return item;
+                            })}
+                        {issueListLoadable.state === 'loading' && <LoadingSpinner />}
+                    </section>
+                </S.IssueContainer>
+            )}
+        </div>
+    );
+```
+- recoil의 useRecoilValueLoadble 함수를 통해 데이터의 상태 (hasvalue,loading,haserror) 를 관리하고 상태에 따른 UI를 변경했습니다.
 
 ### `공통 기능`
 > - 페이지 전환 시에는 스켈레톤 UI 화면을 제공합니다.
 > - 스크롤 이벤트로 추가 데이터 요청 시에는 스피너 UI를 제공합니다.
 > - 에러가 발생한 경우 에러 페이지로 리다이렉트합니다.
->   - closed 이슈 번호로 접근한 경우에는 접근 불가 이슈임을 사용자에게 안내합니다.
->   - status 코드가 명시된 에러는 사용자에게 코드 정보를 제공합니다.
+
+  
+| 스켈레톤-issueList |       스켈레톤-issueDetail      |
+| :---------------------------------: | :-----------------------------------: |
+| <img width="400" alt="issueList" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/1084dfdf-5e44-430b-b52b-e4b529cf0091"/> | <img width="400" alt="issueDetail" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/33c8fdbe-45f8-41e1-92dd-8ff00731dea4"/> |
+
