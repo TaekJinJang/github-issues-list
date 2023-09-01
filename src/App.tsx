@@ -1,14 +1,21 @@
+import {styled} from 'styled-components';
 import './App.css';
-import Header from './components/Header';
+import Header from './components/common/Header';
 import {Outlet} from 'react-router-dom';
 
 function App() {
     return (
-        <div className='App'>
+        <>
             <Header />
-            <Outlet />
-        </div>
+            <ContentsWrapperStyled>
+                <Outlet />
+            </ContentsWrapperStyled>
+        </>
     );
 }
 
 export default App;
+const ContentsWrapperStyled = styled.div`
+    max-width: 768px;
+    margin: 0 auto;
+`;
