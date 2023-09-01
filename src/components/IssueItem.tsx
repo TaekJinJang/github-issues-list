@@ -1,6 +1,7 @@
 import * as S from '../styles/Issue.styled';
 import {issueType} from '../types/IssueTypes';
 import {useNavigate} from 'react-router-dom';
+import {changeDateFormat} from '../utils/changeDateFormat';
 
 const IssueItem = ({issue}: {issue: issueType}) => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const IssueItem = ({issue}: {issue: issueType}) => {
                 </span>
                 <span className='bottom'>
                     <span>작성자 : {issue.user.login}</span>
-                    <span>작성일 : {new Date(issue.created_at).toLocaleDateString()}</span>
+                    <span>작성일 : {changeDateFormat(issue.created_at)}</span>
                 </span>
             </div>
             <span className='comment'>코멘트 : {issue.comments}</span>
