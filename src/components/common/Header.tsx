@@ -1,6 +1,6 @@
-import API_PARAMETER from '../constants/apiParameter';
-import ROUTES from '../constants/routes';
-import * as S from '../styles/Header.styled';
+import API_PARAMETER from '../../constants/apiParameter';
+import ROUTES from '../../constants/routes';
+import * as S from '../../styles/Header.styled';
 
 const Header = () => {
     return (

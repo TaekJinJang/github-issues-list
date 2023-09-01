@@ -1,5 +1,5 @@
-import * as S from '../styles/Issue.styled';
-import {issueType} from '../types/IssueTypes';
+import * as S from '../../styles/Issue.styled';
+import {issueType} from '../../types/IssueTypes';
 import {useNavigate} from 'react-router-dom';
 
 const IssueItem = ({issue}: {issue: issueType}) => {
