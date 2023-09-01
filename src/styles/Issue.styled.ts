@@ -1,41 +1,61 @@
 import styled from 'styled-components';
 
-export const IssueContainer = styled.ul`
-    margin: 0;
-    padding: 0;
+export const IssueContainer = styled.div`
+    border: 1px solid var(--listBorder);
+    border-radius: 12px;
+    margin: 10px;
+    overflow: hidden;
 `;
-export const IssueListStyled = styled.li`
-    width: 500px;
+export const IssuePageTitle = styled.h3`
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--listBorder);
+    background-color: var(--listItemBg);
+`;
+export const IssueListStyled = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    height: 60px;
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    box-sizing: border-box;
 
-    &:hover {
-        background-color: #ced0ea;
+    &.hover {
+        border-bottom: 1px solid var(--listBorder);
+        cursor: pointer;
     }
-    .title {
-        width: 390px;
-        display: inline-block;
-        font-size: 17px;
-        font-weight: 600;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    &.hover:hover {
+        background-color: var(--listItemHoverBg);
     }
-    .bottom {
-        margin-top: 20px;
+    .left {
         display: flex;
-        gap: 7px;
+        flex-direction: column;
+        gap: 10px;
+        .top {
+            display: inline;
+            .issueNumber {
+                margin-right: 6px;
+            }
+            .title {
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+        .bottom {
+            display: flex;
+            gap: 6px;
+            color: var(--textSubtitle);
+        }
     }
-    .comment {
-        width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .right {
+        flex-shrink: 0;
+        font-size: 14px;
+        color: var(--textSubtitle);
+        span {
+            font-weight: 500;
+        }
     }
 `;
 
