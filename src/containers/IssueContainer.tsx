@@ -22,7 +22,7 @@ const IssueContainer = () => {
         threshold: 0.2,
         endPoint: 3,
     });
-    console.info(page);
+
     useEffect(() => {
         setPage(count);
     }, [count]);
@@ -31,7 +31,6 @@ const IssueContainer = () => {
         if (issueListLoadable.state === 'hasValue') {
             if (issues.length > 1 && page !== 1) {
                 setIssues(issues => [...issues, ...issueListLoadable.contents]);
-                console.info('useEffec실행', issueListLoadable.contents);
             } else setIssues(issueListLoadable.contents);
         }
     }, [issueListLoadable.contents]);

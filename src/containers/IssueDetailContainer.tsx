@@ -12,9 +12,7 @@ const IssueDetailContainer = () => {
     const params = useParams();
     const id = params.id;
 
-    const {data, error, loading} = useIssueDetail(Number(id));
-
-    console.info(data, error, loading, '이슈ㅜ데이터');
+    const {data, loading} = useIssueDetail(Number(id));
 
     return (
         <>

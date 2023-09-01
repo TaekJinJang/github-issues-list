@@ -39,13 +39,7 @@ export const issueListSelector = selector({
         }
     },
     // set: ({set}, newIssueList) => {
-    //     try {
     //         set(issueListAtom, newIssueList);
-    //         console.info('dkxha');
-    //     } catch (error) {
-    //         console.error(error);
-    //         throw error;
-    //     }
     // },
 });
 
