@@ -4,9 +4,9 @@ import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {getIssueDetailAPI} from '../apis/IssueAPI';
 import {issueDetailType} from '../types/IssueTypes';
-import IssueItem from '../components/IssueItem';
+import IssueItem from '../components/common/IssueItem';
 import MarkdownBody from '../components/MarkdownBody';
-import Skeleton from 'react-loading-skeleton';
+import IssueDetailSkeleton from '../components/IssueDetailSkeleton';
 
 const IssueDetailContainer = () => {
     const params = useParams();
@@ -18,25 +18,27 @@ const IssueDetailContainer = () => {
 
     return (
         <>
-            <S.IssueDetailHeader>
-                <img src={data.user.avatar_url} alt={data.user.login} width={80} />
-                <IssueItem
-                    issue={{
-                        number: data.number,
-                        title: data.title,
-                        user: {login: data.user.login},
-                        created_at: data.created_at,
-                        comments: data.comments,
-                    }}
-                />
-            </S.IssueDetailHeader>
-            <S.IssueDetailBody>
-                {loading ? (
-                    <Skeleton height={300} />
-                ) : (
-                    <MarkdownBody body={data.body}></MarkdownBody>
-                )}
-            </S.IssueDetailBody>
+            {loading ? (
+                <IssueDetailSkeleton />
+            ) : (
+                <>
+                    <S.IssueDetailHeader>
+                        <img src={data.user.avatar_url} alt={data.user.login} width={80} />
+                        <IssueItem
+                            issue={{
+                                number: data.number,
+                                title: data.title,
+                                user: {login: data.user.login},
+                                created_at: data.created_at,
+                                comments: data.comments,
+                            }}
+                        />
+                    </S.IssueDetailHeader>
+                    <S.IssueDetailBody>
+                        <MarkdownBody body={data.body}></MarkdownBody>
+                    </S.IssueDetailBody>
+                </>
+            )}
         </>
     );
 };
