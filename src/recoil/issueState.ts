@@ -13,11 +13,6 @@ export const issuePageAtom = atom<number>({
     default: 1,
 });
 
-export const issueDetailAtom = atom({
-    key: 'issueDetailAtom',
-    default: null, // 기본값 설정 (개별 이슈 정보는 null)
-});
-
 // Selector 정의
 
 export const issueListSelector = selector({
