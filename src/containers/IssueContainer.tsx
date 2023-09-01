@@ -7,6 +7,8 @@ import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import AdImage from '../components/Ad';
 import IssueItemSkeleton from '../components/IssueItemSkeleton';
+import LoadingSpinner from '../components/common/LoadingSpinner';
+import NotFound from '../pages/NotFound';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
@@ -35,7 +37,7 @@ const IssueContainer = () => {
     }, [issueListLoadable.contents]);
 
     // state가 error라면 error 페이지로 리다이렉트
-
+    if (issueListLoadable.state === 'hasError') return <NotFound />;
     return (
         <div>
             {issues.length === 0 ? (
@@ -50,11 +52,10 @@ const IssueContainer = () => {
 
                                 return item;
                             })}
-                        {issueListLoadable.state === 'loading' && <div> 로딩중입니다 .....</div>}
+                        {issueListLoadable.state === 'loading' && <LoadingSpinner />}
                     </section>
                 </S.IssueContainer>
             )}
-            {issueListLoadable.state === 'hasError' && <div>에러페이지 이동 </div>}
         </div>
     );
 };

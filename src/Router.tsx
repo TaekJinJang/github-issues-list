@@ -3,6 +3,8 @@ import App from './App';
 import IssueList from './pages/IssueList';
 import ROUTES from './constants/routes';
 import IssueDetail from './pages/IssueDetail';
+import Header from './components/common/Header';
+import NotFound from './pages/NotFound';
 
 export const Router = createBrowserRouter([
     {
@@ -22,5 +24,11 @@ export const Router = createBrowserRouter([
                 element: <IssueDetail />,
             },
         ],
+        errorElement: (
+            <>
+                <Header />
+                <NotFound />
+            </>
+        ),
     },
 ]);
