@@ -15,7 +15,7 @@ const IssueDetailContainer = () => {
     const {data, loading} = useIssueDetail(Number(id));
 
     return (
-        <>
+        <S.IssueDetailContainer>
             <S.IssueDetailHeader>
                 <img src={data.user.avatar_url} alt={data.user.login} width={80} />
                 <IssueItem
@@ -35,7 +35,7 @@ const IssueDetailContainer = () => {
                     <MarkdownBody body={data.body}></MarkdownBody>
                 )}
             </S.IssueDetailBody>
-        </>
+        </S.IssueDetailContainer>
     );
 };
 

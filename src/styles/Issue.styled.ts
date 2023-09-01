@@ -6,7 +6,7 @@ export const IssueContainer = styled.div`
     margin: 10px;
     overflow: hidden;
 `;
-export const IssuePageTitle = styled.h3`
+export const IssuePageTitle = styled.div`
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
@@ -60,12 +60,15 @@ export const IssueListStyled = styled.div`
 `;
 
 export const IssueDetailHeader = styled.div`
-    max-width: 800px;
-    box-sizing: border-box;
-    padding: 0 10px;
-    margin: 10px auto;
+    padding: 10px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--listItemBg);
+`;
+export const IssueDetailContainer = styled.div`
+    border-radius: 12px;
+    margin: 20px auto;
+    border: 1px solid var(--listItemBg);
     img {
         border-radius: 50px;
     }
@@ -76,7 +79,7 @@ export const IssueDetailBody = styled.article`
     padding: 10px 20px;
     margin: 0 auto;
     box-sizing: border-box;
-    border: 1px solid #e3e3e3;
+
     text-align: left;
     img {
         max-width: 700px;

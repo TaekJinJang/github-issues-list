@@ -5,7 +5,7 @@ import {issueListAtom, issueListSelector, issuePageAtom} from '../recoil/issueSt
 import IssueItem from '../components/common/IssueItem';
 import {issueType} from '../types/IssueTypes';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import AdImage from '../components/Ad';
+import AdImage from '../components/AdImage';
 import IssueItemSkeleton from '../components/IssueItemSkeleton';
 
 const IssueContainer = () => {
