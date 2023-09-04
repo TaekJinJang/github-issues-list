@@ -1,42 +1,42 @@
 import {useEffect, useRef} from 'react';
 import * as S from '../styles/Issue.styled';
-import {useRecoilState, useRecoilValueLoadable} from 'recoil';
-import {issueListAtom, issueListSelector, issuePageAtom} from '../recoil/issueState';
+import {useRecoilValue} from 'recoil';
+import {issuesStateAtom} from '../recoil/issueAtom';
 import IssueItem from '../components/common/IssueItem';
-import {issueType} from '../types/IssueTypes';
+
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import AdImage from '../components/Ad';
 import IssueItemSkeleton from '../components/IssueItemSkeleton';
+// import LoadingSpinner from '../components/common/LoadingSpinner';
+// import NotFound from '../pages/NotFound';
+import useIssues from '../hooks/useIssues';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import NotFound from '../pages/NotFound';
 
 const IssueContainer = () => {
     const target = useRef<HTMLDivElement>(null);
-    const [page, setPage] = useRecoilState(issuePageAtom);
-    const [issues, setIssues] = useRecoilState<issueType[]>(issueListAtom);
-    const issueListLoadable = useRecoilValueLoadable<issueType[]>(issueListSelector);
+
+    const issuesState = useRecoilValue(issuesStateAtom);
+    const {issues, isLoading, errorStatus, hasMoreIssues} = issuesState;
+    const {getIssues, getNextPage} = useIssues();
 
     const {count} = useInfiniteScroll({
         target: target,
-        targetArray: issues,
+        targetArray: issuesState.issues,
         threshold: 0.2,
         endPoint: 3,
     });
 
     useEffect(() => {
-        setPage(count);
+        if (issues.length === 0) getIssues(1);
+        else if (count > 1) getNextPage();
+        console.info('여기서실행돼');
     }, [count]);
 
-    useEffect(() => {
-        if (issueListLoadable.state === 'hasValue') {
-            if (issues.length > 1 && page !== 1) {
-                setIssues(issues => [...issues, ...issueListLoadable.contents]);
-            } else setIssues(issueListLoadable.contents);
-        }
-    }, [issueListLoadable.contents]);
+    console.info(issues);
 
     // state가 error라면 error 페이지로 리다이렉트
-    if (issueListLoadable.state === 'hasError') return <NotFound />;
+    if (errorStatus) return <NotFound />;
     return (
         <div>
             {issues.length === 0 ? (
@@ -44,14 +44,14 @@ const IssueContainer = () => {
             ) : (
                 <S.IssueContainer>
                     <section ref={target}>
-                        {issues &&
-                            issues.map((issue, index) => {
-                                const item = <IssueItem key={issue.number} issue={issue} />;
-                                if ((index + 1) % 4 === 0) return [item, <AdImage key={index} />];
+                        {issues.map((issue, index) => {
+                            const item = <IssueItem key={issue.number} issue={issue} />;
+                            if ((index + 1) % 4 === 0) return [item, <AdImage key={index} />];
 
-                                return item;
-                            })}
-                        {issueListLoadable.state === 'loading' && <LoadingSpinner />}
+                            return item;
+                        })}
+                        {isLoading && hasMoreIssues && <LoadingSpinner />}
+                        {!hasMoreIssues && <div>더이상 issue가 없습니다.</div>}
                     </section>
                 </S.IssueContainer>
             )}
