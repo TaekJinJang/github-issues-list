@@ -22,3 +22,9 @@ export interface issuesStateType {
     pageCount: number;
     issues: issueType[] | [];
 }
+
+export interface issueDetailStateType {
+    isLoading: boolean;
+    errorStatus: number | string;
+    issue: issueDetailType;
+}

@@ -28,5 +28,5 @@ export const getIssueDetailAPI = async (id: number) => {
             'X-GitHub-Api-Version': '2022-11-28',
         },
     });
-    return response.data;
+    return response;
 };

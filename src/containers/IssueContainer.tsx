@@ -31,6 +31,7 @@ const IssueContainer = () => {
         if (issues.length === 0) getIssues(1);
         else if (count > 1) getNextPage();
         console.info('여기서실행돼');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [count]);
 
     console.info(issues);
