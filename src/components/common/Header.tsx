@@ -1,4 +1,4 @@
-import API_PARAMETER from '../../constants/apiParameter';
+import {API_PARAMETER} from '../../constants/apiParameter';
 import ROUTES from '../../constants/routes';
 import * as S from '../../styles/Header.styled';
 
