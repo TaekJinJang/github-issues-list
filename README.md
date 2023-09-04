@@ -2,12 +2,13 @@
 
 - 특정 리포지토리(facebook/react)의 이슈 목록을 확인하는 페이지입니다.
 
-### 프로젝트 중 아쉬웠던 점 (리팩토링 예정)
- - 관심사 분리를 더 확실하게 하기
- - recoil의 의도를 파악하고 selector를 더 효율적으로 사용하기
- - custom hooks으로 데이터 패칭 관련 코드 수정하기
-   - 인피니티 스크롤 이후 상세페이지 -> 메인페이지로 이동 시 불러온 모든 게시글 보여주기
- - 에러페이지에 무슨 에러인지 사용자에게 알려주기
+### 프로젝트 중 아쉬웠던 점 ~~(리팩토링 예정)~~ 2023-09-04 리팩토링 완료
+ - ~~관심사 분리를 더 확실하게 하기~~
+ - ~~recoil의 의도를 파악하고 selector를 더 효율적으로 사용하기~~
+   - **selector를 사용하지 않고 customhooks으로 대체**
+ - ~~custom hooks으로 데이터 패칭 관련 코드 수정하기~~
+   - ~~인피니티 스크롤 이후 상세페이지 -> 메인페이지로 이동 시 불러온 모든 게시글 보여주기~~
+ - ~~에러페이지에 무슨 에러인지 사용자에게 알려주기~~
 
 
 
@@ -61,6 +62,8 @@
 > - 본문에서는 마크다운 문법을 제공합니다. (react-markdown)
 
 ### `데이터 상태관리`
+
+#### 리팩토링 전
 ``` js
 // state가 error라면 error 페이지로 리다이렉트
     if (issueListLoadable.state === 'hasError') return <NotFound />;
@@ -86,6 +89,33 @@
     );
 ```
 - recoil의 useRecoilValueLoadble 함수를 통해 데이터의 상태 (hasvalue,loading,haserror) 를 관리하고 상태에 따른 UI를 변경했습니다.
+
+#### 리팩토링 후
+``` js
+// state가 error라면 error 페이지로 리다이렉트
+    if (errorStatus) return <NotFound errorStatus={errorStatus} />;
+    return (
+        <div>
+            {issues.length === 0 ? (
+                Array.from({length: 10}).map((_, index) => <IssueItemSkeleton key={index} />)
+            ) : (
+                <S.IssueContainer>
+                    <section ref={target}>
+                        {issues.map((issue, index) => {
+                            const item = <IssueItem key={issue.number} issue={issue} />;
+                            if ((index + 1) % 4 === 0) return [item, <AdImage key={index} />];
+
+                            return item;
+                        })}
+                        {isLoading && hasMoreIssues && <LoadingSpinner />}
+                        {!hasMoreIssues && <div>더이상 issue가 없습니다.</div>}
+                    </section>
+                </S.IssueContainer>
+            )}
+        </div>
+    );
+```
+- customhooks을 통해 데이터의 상태에 따라 UI를 보여주고 더이상 데이터가 없다면 사용자에게 알려줍니다.
 
 ### `공통 기능`
 > - 페이지 전환 시에는 스켈레톤 UI 화면을 제공합니다.
