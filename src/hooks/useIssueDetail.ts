@@ -24,7 +24,6 @@ const useIssueDetail = () => {
             }
         } catch (e) {
             const error = e as AxiosError;
-            console.error(error);
             setIssueDetail(prev => ({
                 ...prev,
                 errorStatus: error.response?.status ?? MESSAGE.INVALID_ERROR,

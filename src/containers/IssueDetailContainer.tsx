@@ -20,9 +20,8 @@ const IssueDetailContainer = () => {
         getIssueDetail(Number(id));
     }, [getIssueDetail, id]);
 
-    console.info(issueDetail);
     // state가 error라면 error 페이지로 리다이렉트
-    if (errorStatus) return <NotFound />;
+    if (errorStatus) return <NotFound errorStatus={errorStatus} />;
 
     return (
         <>

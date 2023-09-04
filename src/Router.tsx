@@ -27,7 +27,7 @@ export const Router = createBrowserRouter([
         errorElement: (
             <>
                 <Header />
-                <NotFound />
+                <NotFound errorStatus={404} />
             </>
         ),
     },

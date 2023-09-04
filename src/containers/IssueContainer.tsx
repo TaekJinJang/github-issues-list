@@ -7,8 +7,6 @@ import IssueItem from '../components/common/IssueItem';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import AdImage from '../components/Ad';
 import IssueItemSkeleton from '../components/IssueItemSkeleton';
-// import LoadingSpinner from '../components/common/LoadingSpinner';
-// import NotFound from '../pages/NotFound';
 import useIssues from '../hooks/useIssues';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import NotFound from '../pages/NotFound';
@@ -30,14 +28,12 @@ const IssueContainer = () => {
     useEffect(() => {
         if (issues.length === 0) getIssues(1);
         else if (count > 1) getNextPage();
-        console.info('여기서실행돼');
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [count]);
 
-    console.info(issues);
-
     // state가 error라면 error 페이지로 리다이렉트
-    if (errorStatus) return <NotFound />;
+    if (errorStatus) return <NotFound errorStatus={errorStatus} />;
     return (
         <div>
             {issues.length === 0 ? (
