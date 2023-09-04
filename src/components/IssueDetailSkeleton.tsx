@@ -7,11 +7,11 @@ const IssueDetailSkeleton = () => {
     return (
         <>
             <S.IssueDetailHeader>
-                <Skeleton width={80} />
+                <Skeleton width={80} height={80} borderRadius={50} />
                 <IssueItemSkeleton />
             </S.IssueDetailHeader>
             <S.IssueDetailBody>
-                <Skeleton height={300} />
+                <Skeleton height={500} borderRadius={50} />
             </S.IssueDetailBody>
         </>
     );

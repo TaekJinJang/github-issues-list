@@ -7,13 +7,12 @@ const IssueItemSkeleton = () => {
         <S.IssueListStyled>
             <div>
                 <Skeleton className='title' />
-
-                <div className='bottom'>
-                    <Skeleton />
-                    <Skeleton />
-                </div>
+                <Skeleton className='bottom' />
             </div>
-            <Skeleton />
+            <div className='comment'>
+                <Skeleton width={70} />
+            </div>
+            {/* <Skeleton /> */}
         </S.IssueListStyled>
     );
 };

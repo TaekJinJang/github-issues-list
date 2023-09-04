@@ -42,10 +42,11 @@ export const IssueListStyled = styled.li`
 export const IssueDetailHeader = styled.div`
     max-width: 800px;
     box-sizing: border-box;
-    padding: 0 10px;
+    padding: 0 30px;
     margin: 10px auto;
     display: flex;
     align-items: center;
+
     img {
         border-radius: 50px;
     }
@@ -58,6 +59,7 @@ export const IssueDetailBody = styled.article`
     box-sizing: border-box;
     border: 1px solid #e3e3e3;
     text-align: left;
+    border-radius: 50px;
     img {
         max-width: 700px;
         display: flex;
