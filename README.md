@@ -95,7 +95,7 @@
   
 | 스켈레톤-issueList |       스켈레톤-issueDetail      |
 | :---------------------------------: | :-----------------------------------: |
-| <img width="400" alt="issueList" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/1084dfdf-5e44-430b-b52b-e4b529cf0091"/> | <img width="400" alt="issueDetail" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/33c8fdbe-45f8-41e1-92dd-8ff00731dea4"/> |
+| <img width="400" alt="issueList" src=https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/291d5ac6-9e56-43fc-a5c7-6bc777f2d686/> | <img width="400" alt="issueDetail" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/62ebf151-7ec2-4942-9d05-85262d01f73d"/> |
 
 ## 기술 스택
 
