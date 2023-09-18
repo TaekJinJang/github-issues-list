@@ -16,9 +16,6 @@
 
 </details>
 
-
-
-
 ## 🙂 시작 가이드
 * 배포 주소
 
@@ -134,7 +131,12 @@
 | :---------------------------------: | :-----------------------------------: |
 | <img width="400" alt="issueList" src=https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/291d5ac6-9e56-43fc-a5c7-6bc777f2d686/> | <img width="400" alt="issueDetail" src="https://github.com/TaekJinJang/wanted-pre-onboarding-2week-personal-repo/assets/93184838/62ebf151-7ec2-4942-9d05-85262d01f73d"/> |
 
-## 기술 스택
+
+## 💡 Best Practice 도출
+팀원들과 함께 고민한 내용들은 아래 링크에서 확인하실 수 있습니다.
+- [Notion 링크](https://motley-bird-51b.notion.site/Best-Practice-a8f877b10b1042c59ef7a1ccb415eff9?pvs=4)
+
+## 💡 기술 스택
 
 ### Development
 
